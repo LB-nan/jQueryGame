@@ -1,0 +1,8 @@
+*{margin: 0; padding: 0;}
+#div1{position: relative;margin: 20px auto;}
+.pos1{width: 50px;height: 50px;background: #666;float: left;}
+.pos2{width: 50px;height: 50px;background:url(../images/wall.png) no-repeat;float: left;}
+.pos3{width: 50px;height: 50px;background:red;float: left;}
+.pos4{width: 50px;height: 50px;background:blue;float: left;}
+.box{width: 50px;height: 50px;background: url(../images/box.png) no-repeat;position: absolute;}
+.person{width: 50px;height: 50px;background: url(../images/person.png) no-repeat; position: absolute;}

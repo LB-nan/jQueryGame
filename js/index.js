@@ -56,7 +56,7 @@ var Game = {
 	},
 	createMap : function(iNow){ //创建地图
 		this.oParent.empty();
-		document.title = '第'+iNow+1+'关'
+		document.title = '第'+(iNow+1)+'关'
 		this.nowJson = this.gk[iNow];
 		this.oParent.css('width',Math.sqrt(this.nowJson.map.length)*50);
 		$.each(this.nowJson.map,$.proxy(function(i,elem){

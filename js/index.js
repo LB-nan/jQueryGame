@@ -48,25 +48,41 @@ var Game = {
 		var oPerson = $('<div class="person"></div>');
 		oPerson.css('left',this.nowJson.person.x * 50);
 		oPerson.css('top',this.nowJson.person.y * 50);
+		oPerson.data('x',this.nowJson.person.x);
+		oPerson.data('y',this.nowJson.person.y);
 		this.oParent.append(oPerson);
 		this.bindPerson(oPerson); 
 	},
-	bindPerson : function(op){
-		$(document).keydown(function(ev){
+	bindPerson : function(oPerson){
+		$(document).keydown($.proxy(function(ev){
 			switch(ev.which){
 				case 37: //左
-					op.css('backgroundPosition','-150px 0');
+					oPerson.css('backgroundPosition','-150px 0');
+					this.runPerson(oPerson,{x:-1});
 					break;
 				case 38://上
-					op.css('backgroundPosition','0px 0');
+					oPerson.css('backgroundPosition','0px 0');
+					this.runPerson(oPerson,{y:-1});
 					break;
 				case 39://右
-					op.css('backgroundPosition','-50px 0');
+					oPerson.css('backgroundPosition','-50px 0');
+					this.runPerson(oPerson,{x:1});
 					break;
 				case 40://下
-					op.css('backgroundPosition','-100px 0');
+					oPerson.css('backgroundPosition','-100px 0');
+					this.runPerson(oPerson,{y:1});
 					break;
 			}
-		});
+		},this));
+	},
+	runPerson : function(oPerson,opt){//人物运动
+		var setpX = opt.x || 0;
+		var setpY = opt.y || 0;
+		if(this.nowJson.map[(oPerson.data('y')+setpY) * Math.sqrt(this.nowJson.map.length) + (oPerson.data('x') + setpX)] !=2){
+			oPerson.data('x',oPerson.data('x')+setpX);
+			oPerson.data('y',oPerson.data('y')+setpY);
+			oPerson.css('left',oPerson.data('x')*50);
+			oPerson.css('top',oPerson.data('y')*50);
+		}
 	}
 }
